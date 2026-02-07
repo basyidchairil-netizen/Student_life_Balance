@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Life-Balance & Healthy Lifestyle</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body.dark {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+
+        .dark .bg-white {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+
+        .dark .text-gray-800 {
+            color: #e2e8f0;
+        }
+
+        .dark .text-gray-600 {
+            color: #a0aec0;
+        }
+
+        .dark .border {
+            border-color: #4a5568;
+        }
+
+        .dark .bg-gray-100 {
+            background-color: #2d3748;
+        }
+
+        .dark .text-blue-600 {
+            color: #63b3ed;
+        }
+
+        .dark .text-green-600 {
+            color: #68d391;
+        }
+
+        .dark .text-red-600 {
+            color: #fc8181;
+        }
+
+        .dark .text-yellow-600 {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl w-96 relative">
+            <button id="closeAuth" class="absolute top-4 right-4 text-gray-500">&times;</button>
+
+            <h2 id="authTitle" class="text-2xl font-bold mb-6 text-green-600">Login</h2>
+
+            <div class="space-y-4">
+                <input type="text" id="authName" placeholder="Nama Lengkap" class="w-full p-2 border rounded hidden">
+                <input type="text" id="authUniv" placeholder="Universitas" class="w-full p-2 border rounded hidden">
+                <input type="text" id="authDorm" placeholder="Lokasi Kos (Contoh: Jakarta Barat)"
+                    class="w-full p-2 border rounded hidden">
+                <input type="email" id="authEmail" placeholder="Email" class="w-full p-2 border rounded">
+                <input type="password" id="authPassword" placeholder="Password" class="w-full p-2 border rounded">
+
+                <button id="authSubmit"
+                    class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Login</button>
+
+                <p class="text-center text-sm">
+                    <span id="authSwitchText">Belum punya akun?</span>
+                    <button id="authSwitchBtn" class="text-green-600 font-bold ml-1">Daftar</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Student Life-Balance & Healthy Lifestyle</h1>
+            <button id="darkModeToggle"
+                class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition duration-300">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+        </header>
+
+        <!-- Dynamic Schedule & Biological Clock -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800"><i class="fas fa-calendar-alt mr-2"></i>Dynamic
+                Schedule & Biological Clock</h2>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">University Class Schedule (e.g., Mon
+                    08:00-10:00, Tue 14:00-16:00)</label>
+                <textarea id="scheduleInput"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="3" placeholder="Enter your schedule..."></textarea>
+                <button id="saveSchedule"
+                    class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition duration-300">Save
+                    Schedule</button>
+            </div>
+            <div id="recommendations" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Recommendations will be populated here -->
+            </div>
+        </section>
+
+        <!-- Acne-Safe Nutrition Guide -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800"><i class="fas fa-utensils mr-2"></i>Acne-Safe
+                Nutrition Guide</h2>
+            <div class="mb-4">
+                <h3 class="text-lg font-medium mb-2">Dormitory Mode Recommendations</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Gado-gado (Low-glycemic, vegetable-based)</li>
+                    <li>Soto Bening (Herbal soup, acne-safe)</li>
+                    <li>Ayam Bakar (Grilled chicken, healthy protein)</li>
+                </ul>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-lg font-medium mb-2">Warnings</h3>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                    <i class="fas fa-exclamation-triangle mr-2"></i> Avoid high-sugar drinks and oily fried foods that
+                    can trigger acne!
+                </div>
+            </div>
+        </section>
+
+        <!-- Anti-Boros (Financial Management) -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800"><i class="fas fa-wallet mr-2"></i>Anti-Boros
+                (Financial Management)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Allowance (IDR)</label>
+                    <input type="number" id="monthlyAllowance"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="e.g., 2000000">
+                    <button id="calculateBudget"
+                        class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition duration-300">Calculate
+                        Daily Budget</button>
+                    <p id="dailyBudget" class="mt-2 text-lg font-semibold text-green-600"></p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-2">Wants vs Needs Evaluator</h3>
+                    <input type="text" id="purchaseItem"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
+                        placeholder="Enter item to evaluate">
+                    <button id="evaluatePurchase"
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition duration-300">Evaluate</button>
+                    <p id="evaluationResult" class="mt-2 text-sm"></p>
+                </div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-medium mb-2">Savings Tracker</h3>
+                <div class="bg-gray-200 rounded-full h-4 mb-2">
+                    <div id="savingsProgress" class="bg-green-500 h-4 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="savingsText" class="text-sm text-gray-600">Saved: 0 IDR / Goal: 500000 IDR</p>
+                <input type="number" id="addSavings"
+                    class="mt-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Add savings (IDR)">
+                <button id="updateSavings"
+                    class="ml-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition duration-300">Update</button>
+            </div>
+        </section>
+
+        <!-- Skin & Habit Tracker -->
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800"><i class="fas fa-heart mr-2"></i>Skin & Habit Tracker
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-medium mb-2">Basic Skincare Checklist</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="faceWash" class="mr-2">
+                            <span>Face Wash</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="moisturizer" class="mr-2">
+                            <span>Moisturizer</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" id="sunscreen" class="mr-2">
+                            <span>Sunscreen</span>
+                        </label>
+                    </div>
+                    <button id="saveSkincare"
+                        class="mt-4 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md transition duration-300">Save
+                        Progress</button>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-2">Daily Water Intake (Goal: 2-3 Liters)</h3>
+                    <div class="flex items-center mb-2">
+                        <input type="number" id="waterIntake"
+                            class="w-20 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
+                            placeholder="0" min="0" step="0.1">
+                        <span>Liters</span>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-4 mb-2">
+                        <div id="waterProgress" class="bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <p id="waterText" class="text-sm text-gray-600">0 / 2.5 Liters</p>
+                    <button id="updateWater"
+                        class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">Update
+                        Intake</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5001/api';
+        // Ambil token dari localStorage
+        const token = localStorage.getItem('token') || "";
+
+        // 1. FUNGSI PUSAT SINKRONISASI
+        async function syncToBackend(endpoint, data) {
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                console.log('Sinkronisasi Berhasil:', result);
+                return result;
+            } catch (error) {
+                console.error('Gagal kirim ke database:', error);
+            }
+        }
+
+        // 2. DARK MODE TOGGLE
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+        if (isDarkMode) {
+            body.classList.add('dark');
+            if (darkModeToggle) darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+        }
+
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                const isDark = body.classList.contains('dark');
+                localStorage.setItem('darkMode', isDark);
+                darkModeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
+            });
+        }
+
+        // 3. SCHEDULE (JADWAL)
+        const scheduleInput = document.getElementById('scheduleInput');
+        const saveSchedule = document.getElementById('saveSchedule');
+        const recommendations = document.getElementById('recommendations');
+
+        if (saveSchedule) {
+            saveSchedule.addEventListener('click', () => {
+                const schedule = scheduleInput.value;
+                localStorage.setItem('schedule', schedule);
+                calculateRecommendations(schedule);
+            });
+        }
+
+        function calculateRecommendations(schedule) {
+            const recs = [
+                { title: 'Sleep', time: '22:00 - 06:00', icon: 'fas fa-bed', color: 'text-blue-600' },
+                { title: 'Study', time: '08:00 - 12:00', icon: 'fas fa-book', color: 'text-green-600' },
+                { title: 'Exercise', time: '17:00 - 18:00', icon: 'fas fa-running', color: 'text-red-600' }
+            ];
+            if (recommendations) {
+                recommendations.innerHTML = recs.map(rec => `
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                    <i class="${rec.icon} ${rec.color} text-2xl mb-2"></i>
+                    <h3 class="font-semibold">${rec.title}</h3>
+                    <p class="text-sm opacity-70">${rec.time}</p>
+                </div>
+            `).join('');
+            }
+        }
+
+        // 4. ANTI-BOROS (BUDGET)
+        const monthlyAllowance = document.getElementById('monthlyAllowance');
+        const calculateBudget = document.getElementById('calculateBudget');
+        const dailyBudget = document.getElementById('dailyBudget');
+
+        if (calculateBudget) {
+            calculateBudget.addEventListener('click', () => {
+                const allowance = parseFloat(monthlyAllowance.value);
+                if (allowance) {
+                    const daily = (allowance / 30).toFixed(0);
+                    dailyBudget.textContent = `Daily Budget: ${daily} IDR`;
+                    localStorage.setItem('dailyBudget', daily);
+                    syncToBackend('/finance/update-budget', { monthlyAllowance: allowance, dailyBudget: daily });
+                }
+            });
+        }
+
+        // 5. SKINCARE
+        const faceWash = document.getElementById('faceWash');
+        const moisturizer = document.getElementById('moisturizer');
+        const sunscreen = document.getElementById('sunscreen');
+        const saveSkincare = document.getElementById('saveSkincare');
+
+        if (saveSkincare) {
+            saveSkincare.addEventListener('click', () => {
+                const skincare = {
+                    faceWash: faceWash.checked,
+                    moisturizer: moisturizer.checked,
+                    sunscreen: sunscreen.checked
+                };
+                localStorage.setItem('skincare', JSON.stringify(skincare));
+                syncToBackend('/health/skincare', skincare);
+                alert('Data Skincare berhasil disinkronkan!');
+            });
+        }
+
+        // 6. LOGIKA AUTH (LOGIN & REGISTER)
+        const authModal = document.getElementById('authModal');
+        const authTitle = document.getElementById('authTitle');
+        const authName = document.getElementById('authName');
+        const authUniv = document.getElementById('authUniv');
+        const authDorm = document.getElementById('authDorm');
+        const authEmail = document.getElementById('authEmail');
+        const authPassword = document.getElementById('authPassword');
+        const authSubmit = document.getElementById('authSubmit');
+        const authSwitchBtn = document.getElementById('authSwitchBtn');
+        let isLoginMode = true;
+
+        // Tampilkan modal jika belum ada token
+        if (!token && authModal) {
+            authModal.classList.remove('hidden');
+        }
+
+        if (authSwitchBtn) {
+            authSwitchBtn.addEventListener('click', () => {
+                isLoginMode = !isLoginMode;
+                authTitle.innerText = isLoginMode ? 'Login' : 'Daftar Akun';
+                authSubmit.innerText = isLoginMode ? 'Login' : 'Daftar';
+
+                // Toggle visibility field tambahan
+                authName.classList.toggle('hidden', isLoginMode);
+                authUniv.classList.toggle('hidden', isLoginMode);
+                authDorm.classList.toggle('hidden', isLoginMode);
+
+                authSwitchBtn.innerText = isLoginMode ? 'Daftar' : 'Login';
+                document.getElementById('authSwitchText').innerText = isLoginMode ? 'Belum punya akun?' : 'Sudah punya akun?';
+            });
+        }
+
+        if (authSubmit) {
+            authSubmit.addEventListener('click', async () => {
+                const endpoint = isLoginMode ? '/auth/login' : '/auth/register';
+                const payload = {
+                    email: authEmail.value,
+                    password: authPassword.value
+                };
+
+                if (!isLoginMode) {
+                    payload.name = authName.value;
+                    payload.university = authUniv.value;
+                    payload.dormLocation = authDorm.value;
+                }
+
+                try {
+                    const response = await fetch(`${API_URL}${endpoint}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        localStorage.setItem('token', data.token);
+                        alert(isLoginMode ? 'Login Berhasil!' : 'Pendaftaran Berhasil!');
+                        location.reload();
+                    } else {
+                        let errorMsg = data.errors ? data.errors.map(e => e.msg).join(', ') : (data.message || 'Gagal');
+                        alert('Gagal: ' + errorMsg);
+                    }
+                } catch (err) {
+                    alert('Terjadi kesalahan koneksi ke server.');
+                }
+            });
+        }
+
+        // LOAD INITIAL DATA
+        window.onload = () => {
+            const savedSch = localStorage.getItem('schedule');
+            if (savedSch && scheduleInput) {
+                scheduleInput.value = savedSch;
+                calculateRecommendations(savedSch);
+            }
+            const savedBud = localStorage.getItem('dailyBudget');
+            if (savedBud && dailyBudget) dailyBudget.textContent = `Daily Budget: ${savedBud} IDR`;
+
+            const savedSkin = JSON.parse(localStorage.getItem('skincare') || '{}');
+            if (faceWash) faceWash.checked = savedSkin.faceWash || false;
+            if (moisturizer) moisturizer.checked = savedSkin.moisturizer || false;
+            if (sunscreen) sunscreen.checked = savedSkin.sunscreen || false;
+        };
+    </script>
+</body>
+
+</html>
